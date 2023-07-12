@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { appName } from '~/constants'
+// import { appName } from '../constants'
 
 useHead({
-  title: appName,
+  title: 'appName',
 })
 
 const color = useColorMode()
 
 // 默认亮色主题
-color.preference = 'light'
+onMounted(() => {
+  color.preference = 'light'
+})
 </script>
 
 <template>

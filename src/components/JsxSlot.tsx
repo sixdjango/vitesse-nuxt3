@@ -1,4 +1,4 @@
-import type { SetupContext, SlotsType, VNodeRef } from 'vue'
+import type { SlotsType, VNodeRef } from 'vue'
 
 interface Props {
   message: string
@@ -7,19 +7,17 @@ export type ChildSecondRef = VNodeRef & {
   dd: string
 }
 
-interface ChildSecondEmits {
-  sendMessage(message: string): void
-}
-
-interface ChildSecondSlots extends SlotsType {
-  default: () => JSX.Element
-}
-
 export default defineComponent({
   emits: {
     sendMessage: (value: string) => typeof value === 'string',
   },
-  setup: (props: Props, { expose, emit, slots }: SetupContext<ChildSecondEmits, ChildSecondSlots>) => {
+
+  slots: Object as SlotsType<{
+    default: { foo: string; bar: number }
+    item: { data: number }
+  }>,
+
+  setup(props: Props, { expose, emit, slots }) {
     expose({
       dd: 'dd',
     })
@@ -27,7 +25,7 @@ export default defineComponent({
     return () => (
       <div>
         <div>ChildSecond: {props.message}</div>
-        <div>{slots.default?.()}</div>
+        <div>{slots.default?.({ foo: '', bar: 1 })}</div>
       </div>
     )
   },

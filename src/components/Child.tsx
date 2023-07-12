@@ -1,7 +1,8 @@
 import { Motion } from '@motionone/vue'
 import { NButton } from 'naive-ui'
+import { consola } from '../utils/consola'
 
-export interface ChildRef {
+export interface ChildRef extends VNode {
   message: string
   showMe: () => void
 }
@@ -9,9 +10,6 @@ export interface ChildRef {
 export default defineComponent(
   {
     name: 'Child',
-    props: {
-
-    },
     setup: (props, { slots, emit, expose }) => {
       expose({
         message: 'goodddd',

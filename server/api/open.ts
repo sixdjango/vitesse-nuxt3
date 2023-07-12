@@ -1,4 +1,5 @@
 import { commonHttp } from '../../common/axios'
+import { consola } from '../utils/consola'
 
 export default defineEventHandler(async () => {
   const res = await commonHttp.get('https://api.github.com/users/antfu')

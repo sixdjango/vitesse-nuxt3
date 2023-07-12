@@ -8,8 +8,6 @@ export default defineComponent({
 
   },
   setup: (props, { slots, emit, expose }) => {
-    consola.info('jx page')
-
     definePageMeta({
       layout: 'home',
     })

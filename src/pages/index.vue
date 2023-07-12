@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import TestTable from './components/TestTable'
+import type { FetchItemsFn } from '~/composables/usePaging'
+
 const online = useOnline()
 
 // consola.info('Default Layout')
@@ -9,8 +12,18 @@ const onFetch = async () => {
   const { data } = await useFetch('/api/open')
 }
 
-consola.log(runtimeConfig.public.envMode)
+const items = ref([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
 const ll = ref(0)
+
+const itemsFetch: FetchItemsFn<number> = async () => {
+  await sleep(1000)
+  return {
+    items: [1, 2, 3, 4, 5],
+    total: 10,
+    maxIndex: 10,
+  }
+}
 </script>
 
 <template>
@@ -22,7 +35,6 @@ const ll = ref(0)
     <MotionOne :initial="{ opacity: 0 }" :in-view="{ opacity: 1 }">
       dd {{ ll }}
     </MotionOne>
-    <MotionScroll message="addd" />
     <Counter />
     <div>
       {{ $t('button.about') }}
@@ -49,5 +61,7 @@ const ll = ref(0)
       jx1
     </NuxtLink>
     <InputEntry />
+    <TestTable />
+    <InfinityScroll v-model:items="items" :fetch-items-fn="itemsFetch" :immediate="true" class="h-50vh" />
   </PageLayout>
 </template>

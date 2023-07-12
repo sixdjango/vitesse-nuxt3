@@ -17,6 +17,7 @@ const nodeEnv = envConfig.reduce((prev, next) => {
 
 const server = z.object({
   apiSecret: z.string().optional(),
+  proxyAIApiBase: z.string(),
 })
 
 const client = z.object({
@@ -29,6 +30,7 @@ const processEnv = {
   envMode,
   version,
   aiApiBase: nodeEnv.VITE_PUBLIC_AI_API_BASE,
+  proxyAIApiBase: nodeEnv.VITE_PROXY_AI_API_BASE,
 }
 
 const parsedServer = server.safeParse(processEnv)

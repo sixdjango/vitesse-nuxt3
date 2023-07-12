@@ -1,10 +1,12 @@
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-import { appDescription } from './constants/index'
+import { generateNuxtHooks } from './scripts/nuxtHooks'
 import { env } from './env'
+import { appDescription } from './constants/index'
 
 const VITE_PORT = parseInt(process.env.VITE_PORT || '3000', 10)
 export default defineNuxtConfig({
+  srcDir: 'src/',
   devServer: {
     port: VITE_PORT,
   },
@@ -15,6 +17,7 @@ export default defineNuxtConfig({
     },
   },
   modules: [
+    'nuxt-lodash',
     'modules/motion',
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -50,11 +53,20 @@ export default defineNuxtConfig({
           ]
         : ['@juggle/resize-observer'],
   },
+  components: {
+    dirs: [
+      {
+        path: '~/components',
+        ignore: ['**/*.ts'],
+      },
+    ],
+  },
   vite: {
     plugins: [
-      Components({
-        resolvers: [NaiveUiResolver()], // Automatically register all components in the `components` directory
-      }),
+      Components(
+        {
+          resolvers: [NaiveUiResolver()], // Automatically register all components in the `components` directory
+        }),
     ],
     optimizeDeps: {
       include:
@@ -87,6 +99,15 @@ export default defineNuxtConfig({
       ignore: ['/hi'],
     },
   },
+
+  routeRules: {
+    [`${env.client.data.aiApiBase}/**`]: { proxy: env.server.data.proxyAIApiBase },
+  },
+
+  hooks: {
+    ...generateNuxtHooks(),
+  },
+
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',

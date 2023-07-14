@@ -94,7 +94,7 @@ export default defineComponent({
       }
 
       return (
-        internalShow.value && <div class={['fixed w-full h-full top-0 left-0 z-[var(--mask-z)]']}>
+        internalShow.value && <div class={['fixed w-full h-full top-0 left-0 z-[var(--dc-mask-z)]']}>
               {renderMaskBg()}
               {/* mask content */}
               {slots.default?.({ animationShow: animationShow.value, internalShow: internalShow.value })}

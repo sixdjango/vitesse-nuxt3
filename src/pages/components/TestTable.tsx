@@ -1,6 +1,6 @@
 import { columns } from './logic/column'
 import { ClientOnly } from '#components'
-import DataTableVue from '~/components/DataTable'
+import DataTableVue from '~/components/tsx/DataTable'
 
 export default defineComponent({
   setup(props) {

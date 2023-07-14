@@ -35,6 +35,7 @@
     "nuxt": "^3.6.2",
     "nuxt-lodash": "^2.5.0",
     "pinia": "^2.1.4",
+    "sass": "^1.63.6",
     "simple-git-hooks": "^2.8.1",
     "typescript": "^4.9.5",
     "unplugin-vue-components": "^0.24.1",

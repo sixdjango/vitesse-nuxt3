@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import TestTable from './components/TestTable'
-import type { FetchItemsFn } from '~/composables/usePaging'
+import type { FetchItemsFn } from '~/components/ui/hooks/usePaging'
 
 const online = useOnline()
 
@@ -24,44 +23,37 @@ const itemsFetch: FetchItemsFn<number> = async () => {
     maxIndex: 10,
   }
 }
+const showMask = ref(false)
+
+const beforeShow = async () => {
+  await sleep(2000)
+  consola.info('beforeShow')
+}
 </script>
 
 <template>
-  <PageLayout>
-    <Logos mb-60 mt-100 class="mt-0 flex " />
-    <!-- <Suspense>
-      <ClientOnly> -->
-    <PageView />
-    <MotionOne :initial="{ opacity: 0 }" :in-view="{ opacity: 1 }">
-      dd {{ ll }}
-    </MotionOne>
-    <Counter />
-    <div>
-      {{ $t('button.about') }}
-    </div>
-    <!-- <Child /> -->
-    <NewChild />
-    <MotionTest />
+  <div>
+    <NuxtPage />
     <NButton @click="onFetch">
       fetch outside dat
     </NButton>
-    <div class="h-300">
-      c
-    </div>
-    <ScrollSwiper />
-    <GsapAnimation />
-    <!-- </ClientOnly>
-      <template #fallback>
-        <div op50 italic>
-          <span animate-pulse>Loading...</span>
-        </div>
-      </template>
-    </Suspense> -->
+    <DcMotion
+      :initial="{ opacity: 0 }" :animate="{ opacity: 1 }"
+      @motion-start="() => consola.info('start')"
+      @hover-start="() => consola.info('hover')"
+    >
+      dcmotion
+    </DcMotion>
     <NuxtLink to="/jx1">
       jx1
     </NuxtLink>
-    <InputEntry />
-    <TestTable />
-    <InfinityScroll v-model:items="items" :fetch-items-fn="itemsFetch" :immediate="true" class="h-50vh" />
-  </PageLayout>
+    <!-- <DcInfinityScroll v-model:items="items" :fetch-items-fn="itemsFetch" :immediate="true" class="h-50vh" /> -->
+    <DcDialog v-model:show="showMask">
+      <div>hahaha</div>
+    </DcDialog>
+
+    <NButton @click="showMask = !showMask">
+      show mask
+    </NButton>
+  </div>
 </template>

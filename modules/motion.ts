@@ -25,6 +25,12 @@ export default defineNuxtModule({
     })
 
     addComponent({
+      name: 'MotionOnePresence',
+      export: 'Presence',
+      filePath: '@motionone/vue',
+    })
+
+    addComponent({
       name: 'MotionOne',
       export: 'Motion',
       filePath: '@motionone/vue',

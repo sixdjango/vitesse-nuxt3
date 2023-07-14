@@ -1,4 +1,4 @@
-import { commonHttp } from '../../common/axios'
+import { commonHttp } from '../../../common/axios'
 import { consola } from '../utils/consola'
 
 export default defineEventHandler(async () => {

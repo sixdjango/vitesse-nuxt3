@@ -1,5 +1,5 @@
-import type { FetchItemsFn } from 'composables/usePaging'
-import type { UsePagingScrollOptions } from '~/composables/usePagingScroll'
+import type { FetchItemsFn } from '~/components/ui/hooks/usePaging'
+import type { UsePagingScrollOptions } from '~/components/ui/hooks/usePagingScroll'
 
 export type InfinityScrollProps<T> = {
   items: T[]

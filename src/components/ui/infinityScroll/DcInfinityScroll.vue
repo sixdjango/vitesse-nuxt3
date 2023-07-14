@@ -1,5 +1,6 @@
 <script setup lang="tsx" generic="T extends UnionBasis">
 import type { InfinityScrollEvents, InfinityScrollProps, InfinityScrollSlots } from './types'
+import { usePagingScroll } from '~/components/ui/hooks/usePagingScroll'
 
 const props = defineProps <InfinityScrollProps<T>>()
 const emits = defineEmits<InfinityScrollEvents<T>>()

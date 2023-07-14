@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import { appName } from '../constants'
+import './styles/global.scss'
 
 useHead({
   title: 'appName',
@@ -34,11 +35,11 @@ onMounted(() => {
 
 <style>
 html {
-  font-size: 1px;
+  font-size: 16px;
 }
 
 body {
-  font-size: 14rem;
+  font-size: 14px;
 }
 
 html, body , #__nuxt{
